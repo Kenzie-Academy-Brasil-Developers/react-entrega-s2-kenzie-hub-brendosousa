@@ -12,7 +12,7 @@ export const Container = styled.div`
 `;
 
 export const Form = styled.form`
-  background-color: var(--gray-3);
+  background: #212529;
   color: var(--gray-0);
   box-shadow: 0px 3.20867px 32.0867px -8.02168px rgba(0, 0, 0, 0.25);
   border-radius: 3.20867px;

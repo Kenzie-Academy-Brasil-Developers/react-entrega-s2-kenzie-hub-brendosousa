@@ -22,9 +22,12 @@ const Login = ({ auth, setAuth }) => {
     api
       .post("/sessions", data)
       .then((res) => {
-        console.log(res.data);
-        const { token } = res.data;
-        window.localStorage.setItem("@Kenziehub:token", JSON.stringify(token));
+        sessionStorage.clear();
+        sessionStorage.setItem(
+          "@Kenziehub:token",
+          JSON.stringify(res.data.token)
+        );
+        sessionStorage.setItem("user-data", JSON.stringify(res.data.user));
         setAuth(true);
         return history.push("/dashboard");
       })
@@ -42,6 +45,10 @@ const Login = ({ auth, setAuth }) => {
   if (auth) {
     return <Redirect to="/dashboard" />;
   }
+
+  const toRegister = () => {
+    return history.push("/register");
+  };
 
   return (
     <Container>
@@ -66,7 +73,12 @@ const Login = ({ auth, setAuth }) => {
         <ToastContainer />
         <Button type="submit">Entrar</Button>
         <ContainerMessage>Ainda não tem uma conta?</ContainerMessage>
-        <Button backgroundColor="#868E96;" color="#F8F9FA">
+        <Button
+          type="button"
+          onClick={toRegister}
+          backgroundColor="#868E96"
+          color="#F8F9FA"
+        >
           Cadastre-se
         </Button>
       </Form>

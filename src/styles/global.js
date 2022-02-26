@@ -11,6 +11,9 @@ body, input, button {
   font-family: 'Poppins', sans-serif;
   font-size: 0.88rem;
 }
+input{
+  background-color: transparent;
+}
 button {
   cursor: pointer;
 }
