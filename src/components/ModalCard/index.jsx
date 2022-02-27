@@ -1,11 +1,13 @@
 import * as React from "react";
 import { styled, Box } from "@mui/system";
 import ModalUnstyled from "@mui/base/ModalUnstyled";
-import { Header, Form, SelectionBox, ButtonBox } from "./styles";
+import { Header, Form, SelectionBox, ButtonBox, Toast } from "./styles";
 import Button from "../Button";
 import { api } from "../../services/api";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ModalCard = ({ open, setOpen, techs, setTechs }) => {
   const StyledModal = styled(ModalUnstyled)`
@@ -74,6 +76,7 @@ const ModalCard = ({ open, setOpen, techs, setTechs }) => {
       })
       .catch((error) => {
         console.log(error);
+        toast.error("Tecnologia já cadastrada!");
       });
   };
 
@@ -115,6 +118,7 @@ const ModalCard = ({ open, setOpen, techs, setTechs }) => {
                 Cadastrar tecnologia
               </Button>
             </ButtonBox>
+            <Toast />
           </Form>
         </Box>
       </StyledModal>

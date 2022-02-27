@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Header = styled.header`
   background: #343b41;
@@ -91,4 +93,24 @@ export const ButtonBox = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-evenly;
+`;
+
+export const Toast = styled(ToastContainer)`
+  .Toastify__toast--info {
+    background: #343b41;
+  }
+
+  .Toastify__toast--success {
+    background: var(--gray-2);
+    color: var(--title);
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .Toastify__toast--error {
+    background: #343b41;
+    color: var(--title);
+    font-weight: bold;
+    font-size: 14px;
+  }
 `;

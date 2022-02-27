@@ -8,9 +8,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useHistory } from "react-router-dom";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
+import "react-toastify/dist/ReactToastify.css";
 import { Redirect } from "react-router-dom";
-import { red } from "@mui/material/colors";
 
 const Register = ({ auth }) => {
   const history = useHistory();
