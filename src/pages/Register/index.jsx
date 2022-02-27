@@ -10,6 +10,7 @@ import { api } from "../../services/api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import { Redirect } from "react-router-dom";
+import { red } from "@mui/material/colors";
 
 const Register = ({ auth }) => {
   const history = useHistory();
@@ -56,7 +57,6 @@ const Register = ({ auth }) => {
       .post("/users", data)
       .then((_) => {
         toast.success("Conta criada com sucesso!");
-        history.push("/");
       })
       .catch((error) => {
         console.log(error);
@@ -80,6 +80,7 @@ const Register = ({ auth }) => {
           onClick={toBack}
           backgroundColor="#212529"
           color="var(--title)"
+          hover="#343B41"
         >
           Voltar
         </Button>

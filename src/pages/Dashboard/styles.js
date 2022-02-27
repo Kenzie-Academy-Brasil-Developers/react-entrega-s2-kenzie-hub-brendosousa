@@ -9,26 +9,35 @@ export const Container = styled.div`
   justify-content: flex-start;
   background: var(--gray-4);
   gap: 20px;
-`;
-
-export const Header = styled.header`
-  width: 90%;
-  max-width: 370px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 20px;
-  figure {
-    padding-right: 46%;
+  main {
+    width: 90%;
+    max-width: 779.73px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 `;
 
-export const HelloUser = styled.div`
-  height: 131px;
+export const Header = styled.div`
+  width: 90%;
+  max-width: 779.73px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  figure {
+    padding-right: 45%;
+  }
+  button {
+    width: 56px;
+  }
+`;
+
+export const HelloUser = styled.header`
+  height: 118px;
   background: #121214;
   width: 90%;
-  border-top: 1px solid var(--gray-3);
-  border-bottom: 1px solid var(--gray-3);
+  max-width: 779.73px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -43,13 +52,20 @@ export const HelloUser = styled.div`
     font-size: 12px;
     font-weight: normal;
   }
+
+  @media (min-width: 800px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 
 export const HeaderTechs = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 90%;
-  height: 50px;
+  width: 100%;
+  max-width: 779.73px;
+  height: 35px;
   span {
     font-size: 16px;
     color: var(--title);
@@ -67,5 +83,16 @@ export const HeaderTechs = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    &:hover {
+      background-color: #343b41;
+    }
   }
+`;
+
+export const Box = styled.div`
+  width: 100%;
+  border-top: 1px solid var(--gray-3);
+  border-bottom: 1px solid var(--gray-3);
+  display: flex;
+  justify-content: center;
 `;

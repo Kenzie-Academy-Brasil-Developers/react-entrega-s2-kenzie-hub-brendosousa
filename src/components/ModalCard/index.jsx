@@ -27,7 +27,8 @@ const ModalCard = ({ open, setOpen, techs, setTechs }) => {
     bottom: 0;
     top: 0;
     left: 0;
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-tap-highlight-color: transparent;
   `;
 
   const style = {
@@ -51,14 +52,25 @@ const ModalCard = ({ open, setOpen, techs, setTechs }) => {
 
   const { register, handleSubmit } = useForm();
 
+  const updateLocal = () => {
+    const user = JSON.parse(sessionStorage.getItem("user-data"));
+    api
+      .get(`/users/${user.id}`)
+      .then((res) => {
+        sessionStorage.setItem("user-data", JSON.stringify(res.data));
+        setTechs([...res.data.techs]);
+      })
+      .catch((error) => console.log(error));
+  };
+
   const handleRegisterTech = (data) => {
     api
       .post("/users/techs", data, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((_) => {
-        console.log("Sucesso");
-        setTechs([...techs, data]);
+        updateLocal();
+        handleClose();
       })
       .catch((error) => {
         console.log(error);

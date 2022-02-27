@@ -1,4 +1,4 @@
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
 import { useEffect, useState } from "react";
@@ -9,7 +9,6 @@ const Routes = () => {
 
   useEffect(() => {
     const token = JSON.parse(sessionStorage.getItem("@Kenziehub:token"));
-
     if (token) {
       return setAuth(true);
     }
@@ -24,7 +23,11 @@ const Routes = () => {
         <Register auth={auth} />
       </Route>
       <Route path="/dashboard">
-        <Dashboard auth={auth} setAuth={setAuth} />
+        {auth ? (
+          <Dashboard auth={auth} setAuth={setAuth} />
+        ) : (
+          <Redirect to="/" />
+        )}
       </Route>
     </Switch>
   );

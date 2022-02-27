@@ -71,13 +71,16 @@ const Login = ({ auth, setAuth }) => {
           error={errors.password?.message}
         />
         <ToastContainer />
-        <Button type="submit">Entrar</Button>
+        <Button type="submit" hover="#FF427F">
+          Entrar
+        </Button>
         <ContainerMessage>Ainda não tem uma conta?</ContainerMessage>
         <Button
           type="button"
           onClick={toRegister}
           backgroundColor="#868E96"
           color="#F8F9FA"
+          hover="#343B41"
         >
           Cadastre-se
         </Button>

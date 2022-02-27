@@ -1,4 +1,4 @@
-import { Container, Header, HelloUser, HeaderTechs } from "./styles";
+import { Container, Header, HelloUser, HeaderTechs, Box } from "./styles";
 import Logo from "../../assets/Logo.svg";
 import Button from "../../components/Button";
 import List from "../../components/List";
@@ -37,27 +37,33 @@ const Dashboard = ({ auth, setAuth }) => {
         <Button
           backgroundColor="#212529"
           color="var(--title)"
+          hover="#343B41"
           type="button"
           onClick={toBack}
         >
           Sair
         </Button>
       </Header>
-      <HelloUser>
-        <h1>Olá, {user.name} </h1>
-        <h2>{user.course_module}</h2>
-      </HelloUser>
-      <HeaderTechs>
-        <span>Tecnologias</span>
-        <button onClick={handleOpen}>+</button>
-      </HeaderTechs>
-      <List techs={techs} setTechs={setTechs}></List>
-      <ModalCard
-        open={open}
-        setOpen={setOpen}
-        techs={techs}
-        setTechs={setTechs}
-      />
+      <Box>
+        <HelloUser>
+          <h1>Olá, {user.name} </h1>
+          <h2>{user.course_module}</h2>
+        </HelloUser>
+      </Box>
+      <main>
+        <HeaderTechs>
+          <span>Tecnologias</span>
+          <button onClick={handleOpen}>+</button>
+        </HeaderTechs>
+        <List techs={techs} setTechs={setTechs}></List>
+        <ModalCard
+          open={open}
+          setOpen={setOpen}
+          techs={techs}
+          setTechs={setTechs}
+        />
+      </main>
+
       <ToastContainer />
     </Container>
   );

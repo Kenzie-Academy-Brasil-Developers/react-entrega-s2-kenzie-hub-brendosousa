@@ -82,4 +82,7 @@ export const ButtonBox = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-evenly;
+  button + button {
+    margin-left: 20px;
+  }
 `;

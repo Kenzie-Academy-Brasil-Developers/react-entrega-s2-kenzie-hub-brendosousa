@@ -27,7 +27,8 @@ const ModalUpdate = ({ tech, open, setOpen, techs, setTechs }) => {
     bottom: 0;
     top: 0;
     left: 0;
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-tap-highlight-color: transparent;
   `;
 
   const style = {
@@ -45,9 +46,15 @@ const ModalUpdate = ({ tech, open, setOpen, techs, setTechs }) => {
 
   const handleClose = () => setOpen(false);
 
-  const pushUpdate = (obj) => {
-    const filtered = techs.filter((item) => item.title !== obj.title);
-    setTechs([...filtered, obj]);
+  const updateLocal = () => {
+    const user = JSON.parse(sessionStorage.getItem("user-data"));
+    api
+      .get(`/users/${user.id}`)
+      .then((res) => {
+        sessionStorage.setItem("user-data", JSON.stringify(res.data));
+        setTechs([...res.data.techs]);
+      })
+      .catch((error) => console.log(error));
   };
 
   const [token] = useState(
@@ -62,13 +69,24 @@ const ModalUpdate = ({ tech, open, setOpen, techs, setTechs }) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((_) => {
-        const obj = { title: tech.title, status: data.status };
-        pushUpdate(obj);
-        console.log("Sucesso");
+        updateLocal();
+        handleClose();
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const handleDelete = () => {
+    api
+      .delete(`/users/techs/${tech.id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((_) => {
+        updateLocal();
+        handleClose();
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -101,10 +119,16 @@ const ModalUpdate = ({ tech, open, setOpen, techs, setTechs }) => {
             </SelectionBox>
 
             <ButtonBox>
-              <Button type="submit" backgroundColor="#59323F;" color="white">
+              <Button type="submit" backgroundColor="#59323F" color="white">
                 Salvar alterações
               </Button>
-              <Button backgroundColor="#868E96;" color="white">
+              <Button
+                type="button"
+                onClick={handleDelete}
+                backgroundColor="#868E96"
+                hover="#343B41"
+                color="white"
+              >
                 Excluir
               </Button>
             </ButtonBox>

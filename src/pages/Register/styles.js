@@ -67,11 +67,17 @@ export const SelectionBox = styled.div`
   }
   select {
     background-color: var(--gray-2);
-    height: 38.38px;
+    height: 48px;
+    width: 100%;
+    padding: 0.5rem;
     color: var(--gray-0);
     box-sizing: border-box;
     border-radius: 3.19812px;
+    transition: 0.5s;
     border: 0.973988px solid #343b41;
+    :focus-within {
+      border: 1.2182px solid var(--title);
+    }
   }
 `;
 
