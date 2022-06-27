@@ -17,7 +17,7 @@
   <li>Git</li>
 </ul>
 
-## Ferramentas e procedimentos
+## Ferramentas e padrões
 
 <ul> 
   <li>ReactJs</li>
